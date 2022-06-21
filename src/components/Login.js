@@ -5,8 +5,8 @@ const Login = () => {
     return (
         <div className="Login p-2">
             <div className="card shadow-1 mt-5">
-                <div className="card-header text-center">
-                    <h2>Login</h2>
+                <div className="card-header text-center bg-dark text-white">
+                    <h2 className="pt-2">Login</h2>
                 </div>
                 <Form className="p-4">
                     <Form.Group className="mb-3" controlId="formBasicEmail">

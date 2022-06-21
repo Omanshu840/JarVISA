@@ -1,10 +1,14 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useState } from "react";
+import { Container, Nav, Navbar, NavDropdown, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+
+    const [expanded, setExpanded] = useState(false);
+
     return (
         <div className="Header">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="#home">Jarvisa</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -41,7 +45,59 @@ const Header = () => {
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
+            </Navbar> */}
+
+            <>
+            <Navbar key="sm" expanded={expanded} expand="md" className="mb-3" bg="dark" variant="dark">
+            <Container fluid>
+                <Navbar.Brand>JarVISA</Navbar.Brand>
+                <Navbar.Toggle onClick={() => setExpanded(expanded ? false : true)} aria-controls="offcanvasNavbar-expand-sm" />
+                <Navbar.Offcanvas
+                id="offcanvasNavbar-expand-sm"
+                aria-labelledby="offcanvasNavbarLabel-expand-sm"
+                placement="end"
+                >
+                <Offcanvas.Header closeButton onClick={() => setExpanded(expanded ? false : true)}>
+                    <Offcanvas.Title id="offcanvasNavbarLabel-expand-sm">
+                    Offcanvas
+                    </Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <Nav.Link>
+                                <Link to="/dashboard" onClick={() => setExpanded(false)}>
+                                    Dashboard
+                                </Link>
+                            </Nav.Link>
+                            <Nav.Link>
+                                <Link to="/offers" onClick={() => setExpanded(false)}>
+                                    Merchant Offers
+                                </Link>
+                            </Nav.Link>
+                            <Nav.Link>
+                                <Link to="/payment" onClick={() => setExpanded(false)}>
+                                    Add Payment
+                                </Link>
+                            </Nav.Link>
+                        <NavDropdown
+                            title="Dropdown"
+                            id="offcanvasNavbarDropdown-expand-sm"
+                        >
+                            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action4">
+                            Another action
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action5">
+                            Something else here
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                </Offcanvas.Body>
+                </Navbar.Offcanvas>
+            </Container>
             </Navbar>
+            </>
         </div>
     )
 }

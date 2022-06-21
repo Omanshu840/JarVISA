@@ -1,15 +1,20 @@
 import { Card, Row, Container, Table, Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { VictoryPie } from "victory-pie";
 
 const myData = [
-    { x: "Group A", y: 900 },
-    { x: "Group B", y: 400 },
-    { x: "Group C", y: 300 },
+    { x: "Household", y: 6235 },
+    { x: "Transportation", y: 7023 },
+    { x: "Food", y: 7569 },
+    { x: "Apparel", y: 10431 },
+    { x: "Social Life", y: 6000 },
+    { x: "Beauty", y: 1609 },
+    { x: "Other", y: 8000 },
 ];  
 
 const Dashboard = () => {
     return (
-        <div className="Dahsboard mt-3">
+        <div className="Dashboard mt-3">
             <Container>
                 <Row>
                     <div className="col-4 p-2">
@@ -38,37 +43,41 @@ const Dashboard = () => {
                     </div>
                 </Row>
 
-                <Row className="text-center mt-5">
-                    <h2>June 2022</h2>
-                    <div>
-                        <VictoryPie
-                        data={myData}
-                        colorScale={["#D3D3D3", "#808080", "#A9A9A9"]}
-                        radius={100}
-                        />
+                <Row className="text-center mt-4 p-2">
+                    <div className="card shadow-1 pt-4">
+                        <h2>June 2022</h2>
+                        <div>
+                            <VictoryPie
+                            data={myData}
+                            colorScale={["#D3D3D3", "#808080", "#A9A9A9"]}
+                            radius={100}
+                            />
+                        </div>
                     </div>
                 </Row>
 
                 <Row className="p-2">
                     <Table striped bordered hover>
                         <tbody>
-                            <tr>
-                                <td><Badge bg="primary"><h6>28%</h6></Badge></td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td colSpan={2}>Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                            {myData.map((item, index) => {
+                                return (
+                                    <tr>
+                                        <td><Badge bg="primary"><h6>{item.y}</h6></Badge></td>
+                                        <td>{item.x}</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </Table>
                 </Row>
+
+                <Link to="/payment">
+                    <div class="float pt-3">
+                        {/* <i class="fa fa-plus my-float"></i> */}
+                        Pay
+                    </div>
+                </Link>
             </Container>
         </div>
     )
